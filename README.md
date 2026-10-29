@@ -19,7 +19,60 @@ STEP-4: Arrange the characters of the keyword in sorted order and the correspond
 STEP-5: Read the characters row wise or column wise in the former order to get the cipher text.
 
 # PROGRAM
+~~~
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char text[100], rail[3][100];
+    int i, j, row = 0, direction = 1;
+    int len, rails = 3;
+
+    printf("Enter the plaintext: ");
+    scanf("%99s", text);
+
+    len = strlen(text);
+
+    for (i = 0; i < rails; i++)
+    {
+        for (j = 0; j < len; j++)
+        {
+            rail[i][j] = '\0';
+        }
+    }
+
+    for (i = 0; i < len; i++)
+    {
+        rail[row][i] = text[i];
+
+        if (row == 0)
+            direction = 1;
+        else if (row == rails - 1)
+            direction = -1;
+
+        row += direction;
+    }
+
+    printf("Ciphertext: ");
+
+    for (i = 0; i < rails; i++)
+    {
+        for (j = 0; j < len; j++)
+        {
+            if (rail[i][j] != '\0')
+                printf("%c", rail[i][j]);
+        }
+    }
+
+    printf("\n");
+
+    return 0;
+}
+~~~
 
 # OUTPUT
+<img width="1260" height="541" alt="image" src="https://github.com/user-attachments/assets/90eb2eb5-c370-4df7-9697-e35d15b4ab70" />
 
 # RESULT
+Thus, the C program to implement the Rail Fence transposition technique was written and executed successfully.
